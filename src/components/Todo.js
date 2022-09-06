@@ -7,8 +7,8 @@ const Todo = ({myInput,setMyInput,myTodo,setMyTodo}) => {
     const [editTodos, seteditTodos] = useState("")
 
     const addTodo = () => {
-        let newTodo = {myInput}
-        if (myInput != "") {
+        if (myInput !== "") {
+            let newTodo = {myInput}
             setMyTodo([...myTodo,newTodo]);
             setcount(myTodo.length+1)
             setMyInput("")
@@ -20,8 +20,8 @@ const Todo = ({myInput,setMyInput,myTodo,setMyTodo}) => {
     const deleteTodo = (index) => {
         let addedTodo = [...myTodo]
         addedTodo.splice(index,1)
-        setcount(myTodo.length-1)
         setMyTodo(addedTodo)
+        setcount(myTodo.length-1)
     }
 
     const editTodo = (index) => {
@@ -35,7 +35,7 @@ const Todo = ({myInput,setMyInput,myTodo,setMyTodo}) => {
         let updatedTodo = {myInput:editTodos}
         let newTodos = [...myTodo]
         newTodos[editedTodo] = updatedTodo
-        setMyTodo(updatedTodo)
+        setMyTodo(newTodos)
     }
   return (
 		<>
@@ -65,26 +65,26 @@ const Todo = ({myInput,setMyInput,myTodo,setMyTodo}) => {
 			<div className="mt-3">
 				<table className="table table-striped">
 					<thead>
-						<tr className="text-warning">
+						<tr className="text-warning fw-bold">
 							<td>S/N</td>
 							<td>Todo</td>
-							<td>Date</td>
-							<td>Time</td>
+							{/* <td>Date</td> */}
+							{/* <td>Time</td> */}
 							<td>Action</td>
 						</tr>
 					</thead>
 				</table>
 
-				{myTodo.map((myTodo, index) => (
+				{myTodo.map((input, index) => (
 					<>
 						<table className="table table-striped text-center">
 							<tr className="my-2 text-warning">
 								<td className="col-1 px-lg-3">{index + 1}</td>
-								<td className="col-3 px-lg-3">{myTodo.myInput}</td>
-								<td className="col-2">{myTodo.myDate}</td>
-								<td className="col-2">{myTodo.myTime}</td>
+								<td className="col-3 px-lg-3">{input.myInput}</td>
+								{/* <td className="col-2">{input.myDate}</td> */}
+								{/* <td className="col-2">{input.myTime}</td> */}
 								<td className="col-4 mx-auto py-2">
-									<button className="btn btn-warning mx-2 col-lg-2 col-sm-4" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => editTodo(index)}>Edit</button>
+									<button className="btn btn-outline-warning mx-2 col-lg-2 col-sm-4" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => editTodo(index)}>Edit</button>
 									<button className="btn btn-danger mx-2 col-sm-4 col-lg-3 text-center" onClick={() => deleteTodo(index)}>Delete</button>
 								</td>
 							</tr>
@@ -107,18 +107,13 @@ const Todo = ({myInput,setMyInput,myTodo,setMyTodo}) => {
 									</div>
 
 									<div className="modal-body">
-										<input
-											type="text"
-											className="form-control"
-											value={myInput}
-											placeholder={myTodo[editedTodo].myInput}
-											onChange={(e) => setMyInput(e.target.value)}
+										<input type="text" className="form-control" value={editTodos} onChange={(e) => seteditTodos(e.target.value)}
 										/>
 									</div>
 
 									<div className="modal-footer">
-										<button className="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-										{/* <button className="btn btn-primary" data-dismiss="modal" onClick={updateTodo}></button> */}
+										<button className="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
+										<button className="btn btn-primary" data-bs-dismiss="modal" onClick={updateTodo}>Save Changes</button>
 									</div>
 								</div>
 							</div>
