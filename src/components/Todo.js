@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 
-const Todo = ({myInput,setMyInput,myTodo,setMyTodo,myDate,myTime}) => {
-    const [count, setcount] = useState("0");
+const Todo = ({myInput,setMyInput,myTodo,setMyTodo}) => {
+    const [count, setcount] = useState("no");
     const [editedTodo, seteditedTodo] = useState(0)
-    // const [editTodos, seteditTodos] = useState(second)
+    const [editedInput, seteditedInput] = useState({})
+    const [editTodos, seteditTodos] = useState("")
 
     const addTodo = () => {
         let newTodo = {myInput}
@@ -23,16 +24,17 @@ const Todo = ({myInput,setMyInput,myTodo,setMyTodo,myDate,myTime}) => {
         setMyTodo(addedTodo)
     }
 
-    // const editTodo = (index) => {
-    //     seteditedTodo(index)
-    //     let currentTodo = myTodo[index]
-    //     // seteditTodos(currentTodo.myInput)
-    // }
+    const editTodo = (index) => {
+        seteditedTodo(index)
+        let currentTodo = myTodo[index]
+        seteditTodos(currentTodo.myInput)
+        seteditedInput(currentTodo)
+    }
 
     const updateTodo = () => {
-        let updatedTodo = [...myTodo]
-        updatedTodo[editedTodo] = {myTodo}
-        setMyTodo("")
+        let updatedTodo = {myInput:editTodos}
+        let newTodos = [...myTodo]
+        newTodos[editedTodo] = updatedTodo
         setMyTodo(updatedTodo)
     }
   return (
@@ -82,21 +84,8 @@ const Todo = ({myInput,setMyInput,myTodo,setMyTodo,myDate,myTime}) => {
 								<td className="col-2">{myTodo.myDate}</td>
 								<td className="col-2">{myTodo.myTime}</td>
 								<td className="col-4 mx-auto py-2">
-									<button
-										className="btn btn-warning mx-2 col-lg-2 col-sm-4"
-										data-toggle="modal"
-										data-target="#exampleModal"
-										// onClick={() => editTodo(index)}
-									>
-										Edit
-									</button>
-
-									<button
-										className="btn btn-danger mx-2 col-sm-4 col-lg-3 text-center"
-										onClick={() => deleteTodo(index)}
-									>
-										Delete
-									</button>
+									<button className="btn btn-warning mx-2 col-lg-2 col-sm-4" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => editTodo(index)}>Edit</button>
+									<button className="btn btn-danger mx-2 col-sm-4 col-lg-3 text-center" onClick={() => deleteTodo(index)}>Delete</button>
 								</td>
 							</tr>
 						</table>
@@ -111,20 +100,13 @@ const Todo = ({myInput,setMyInput,myTodo,setMyTodo,myDate,myTime}) => {
 							<div className="modal-dialog">
 								<div className="modal-content">
 									<div className="modal-header">
-										<h5 className="modal-title" id="exampleModalLabel">
-											Edit Details for{" "}
-										</h5>
-										<button
-											type="button"
-											className="close"
-											data-dismiss="modal"
-											aria-label="Close"
-										>
+										<h5 className="modal-title" id="exampleModalLabel">Edit Todo {editedTodo.myInput}</h5>
+										<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close">
 											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
 
-									{/* <div className="modal-body">
+									<div className="modal-body">
 										<input
 											type="text"
 											className="form-control"
@@ -132,12 +114,12 @@ const Todo = ({myInput,setMyInput,myTodo,setMyTodo,myDate,myTime}) => {
 											placeholder={myTodo[editedTodo].myInput}
 											onChange={(e) => setMyInput(e.target.value)}
 										/>
-									</div> */}
+									</div>
 
-                                    <div className="modal-footer">
-                                        <button className="btn btn-secondary" type='button' data-dismiss="modal">Close</button>
-                                        {/* <button className="btn btn-primary" data-dismiss="modal" onClick={updateTodo}></button> */}
-                                    </div>
+									<div className="modal-footer">
+										<button className="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+										{/* <button className="btn btn-primary" data-dismiss="modal" onClick={updateTodo}></button> */}
+									</div>
 								</div>
 							</div>
 						</div>
