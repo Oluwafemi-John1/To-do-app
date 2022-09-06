@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 
-const Todo = ({myInput,setMyInput,myTodo,setMyTodo}) => {
+const Todo = ({myInput,setMyInput,myTodo,setMyTodo,myDate,myTime}) => {
     const [count, setcount] = useState("no");
     const [editedTodo, seteditedTodo] = useState(0)
     const [editedInput, seteditedInput] = useState({})
     const [editTodos, seteditTodos] = useState("")
 
+    // console.log(myDate);
+    // console.log(myTodo);
     const addTodo = () => {
         if (myInput !== "") {
-            let newTodo = {myInput}
+            let newTodo = {myInput,myDate,myTime}
             setMyTodo([...myTodo,newTodo]);
             setcount(myTodo.length+1)
             setMyInput("")
@@ -32,7 +34,7 @@ const Todo = ({myInput,setMyInput,myTodo,setMyTodo}) => {
     }
 
     const updateTodo = () => {
-        let updatedTodo = {myInput:editTodos}
+        let updatedTodo = {myInput:editTodos,myDate,myTime}
         let newTodos = [...myTodo]
         newTodos[editedTodo] = updatedTodo
         setMyTodo(newTodos)
@@ -68,8 +70,8 @@ const Todo = ({myInput,setMyInput,myTodo,setMyTodo}) => {
 						<tr className="text-warning fw-bold">
 							<td>S/N</td>
 							<td>Todo</td>
-							{/* <td>Date</td> */}
-							{/* <td>Time</td> */}
+							<td>Date</td>
+							<td>Time</td>
 							<td>Action</td>
 						</tr>
 					</thead>
@@ -81,8 +83,8 @@ const Todo = ({myInput,setMyInput,myTodo,setMyTodo}) => {
 							<tr className="my-2 text-warning">
 								<td className="col-1 px-lg-3">{index + 1}</td>
 								<td className="col-3 px-lg-3">{input.myInput}</td>
-								{/* <td className="col-2">{input.myDate}</td> */}
-								{/* <td className="col-2">{input.myTime}</td> */}
+								<td className="col-2">{input.myDate}</td>
+								<td className="col-2">{input.myTime}</td>
 								<td className="col-4 mx-auto py-2">
 									<button className="btn btn-outline-warning mx-2 col-lg-2 col-sm-4" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => editTodo(index)}>Edit</button>
 									<button className="btn btn-danger mx-2 col-sm-4 col-lg-3 text-center" onClick={() => deleteTodo(index)}>Delete</button>

@@ -13,8 +13,8 @@ function App() {
     let hour = new Date().getHours();
     let minute = new Date().getMinutes();
     let timeCreated = `${hour}:${minute}`
-    const [date, setdate] = useState({dateCreated})
-    const [time, settime] = useState({timeCreated})
+    // const [date, setdate] = useState({dateCreated})
+    // const [time, settime] = useState({timeCreated})
   return (
     <>
     <div className="container-fluid mt-5">
@@ -25,10 +25,10 @@ function App() {
             setMyInput = {settodoInput}
             myTodo = {todoValue}
             setMyTodo = {settodoValue}
-            myDate = {date}
-            setMyDate = {setdate}
-            myTime = {time}
-            setMyTime = {settime}
+            myDate = {dateCreated}
+            // setMyDate = {setdate}
+            myTime = {timeCreated}
+            // setMyTime = {settime}
             />
         </div>
     </div>
