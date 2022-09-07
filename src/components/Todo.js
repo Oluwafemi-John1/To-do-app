@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import pix from "../assets/images/undraw_to_do_list_re_9nt7.svg"
 
 const Todo = ({myInput,setMyInput,myTodo,setMyTodo,myDate,myTime}) => {
     const [count, setcount] = useState("0");
@@ -43,50 +44,45 @@ const Todo = ({myInput,setMyInput,myTodo,setMyTodo,myDate,myTime}) => {
     }
   return (
 		<>
-            <div className="text-center fs-4" style={{color:"#FF2525"}}>{message}</div>
-			<div className="py-3 mx-auto">
-				<input
-					type="text"
-					className="my-1 py-3 mx-auto form-control w-75"
-					placeholder="Enter your to-do"
-					value={myInput}
-					required
-					maxLength={20}
-					onChange={(e) => setMyInput(e.target.value)}
-				/>
-				<button className="btn btn-warning shadow-lg my-1" id='button' onClick={addTodo}>Add</button>
-			</div>
+        <section className='row'>
+			<div className="col-lg-3 shadow rounded-5 px-2 mx-lg-5">
+                <div className="py-lg-5 mx-auto">
+                    <h3 className='text-center mb-lg-5'>To Do</h3>
+                    <center><div className='mx-auto'><img src={pix} alt="" width={350} /></div></center>
+                    <marquee behavior="alternate" direction="up"><div className="text-center fs-4 mt-2 text-dark">{message}</div></marquee>
+                    <input
+                        type="text"
+                        className="my-1 py-3 mx-auto form-control w-75 mt-5 rounded-pill"
+                        placeholder="Enter your to-do"
+                        value={myInput}
+                        required
+                        maxLength={15}
+                        onChange={(e) => setMyInput(e.target.value)}
+                    />
+                    <button className="btn btn-primary shadow-lg my-1" id='button' onClick={addTodo}>+</button>
+                    <div className="fs-5 text-light text-center mx-auto py-2">You have {count} pending task(s)</div>
+                </div>
 
-            <div className="fs-5 text-light text-center mx-auto py-2">You have {count} pending task(s)</div>
+            </div>
+
 
 			{/* Table display */}
-			<div className="mt-3">
-				<table className="table table-striped">
-					<thead>
-						<tr className="text-warning fw-bold">
-							<td>S/N</td>
-							<td>Todo</td>
-							<td>Date</td>
-							<td>Time</td>
-							<td>Action</td>
-						</tr>
-					</thead>
-				</table>
-
+			<div className="mt-3 col-lg-6 col-sm-10">
 				{myTodo.map((input, index) => (
 					<>
-						<table className="table table-striped text-center">
-							<tr className="my-2 text-warning">
-								<td className="col-1">{index + 1}</td>
-								<td className="col-2">{input.myInput}</td>
-								<td className="col-3">{input.myDate}</td>
-								<td className="col-2">{input.myTime}</td>
-								<td className="col-4 mx-auto py-2">
-									<button className="btn btn-outline-warning mx-2 col-lg-2 col-sm-4" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => editTodo(index)}>Edit</button>
-									<button className="btn btn-danger mx-2 col-sm-4 col-lg-3 text-center" onClick={() => deleteTodo(index)}>Delete</button>
-								</td>
-							</tr>
-						</table>
+						<div className="my-2 text-dark">
+                            <li className='d-flex rounded shadow-lg px-4' style={{backgroundColor:"rgb(10, 10, 292)"}}>
+                                <li className="col-1 py-2">{index + 1}</li>
+                                <li className="col-3 py-2">{input.myInput}</li>
+                                <li className="col-2 py-2"><small>{input.myDate}</small></li>
+                                <li className="col-3 py-2"><small>{input.myTime}</small></li>
+                                <li className="col-4 mx-auto py-2">
+                                    <button className="btn btn-outline-none mx-2 border-0 col-lg-3 col-sm-4" data-bs-toggle="modal" id='buttons' data-bs-target="#exampleModal" onClick={() => editTodo(index)}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill text-warning" viewBox="0 0 16 16"><path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/></svg></button>
+                                    <button className="btn border-0 btn-outline-none mx-2 col-sm-4 col-lg-4 text-center" id='buttons' onClick={() => deleteTodo(index)}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill text-danger" viewBox="0 0 16 16"><path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/></svg></button>
+                                </li>
+                            </li>
+							</div>
+						
 
 						<div
 							className="modal fade"
@@ -119,6 +115,7 @@ const Todo = ({myInput,setMyInput,myTodo,setMyTodo,myDate,myTime}) => {
 					</>
 				))}
 			</div>
+        </section>
 		</>
 	);
 }

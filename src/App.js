@@ -14,17 +14,15 @@ function App() {
   return (
     <>
     <div className="container-fluid mt-5">
-        <div className="row mx-auto col-lg-10 rounded shadow-lg">
-            <Header/>
-            <Todo
-            myInput = {todoInput}
-            setMyInput = {settodoInput}
-            myTodo = {todoValue}
-            setMyTodo = {settodoValue}
-            myDate = {dateCreated}
-            myTime = {timeCreated}
-            />
-        </div>
+        {/* <Header/> */}
+        <Todo
+        myInput = {todoInput}
+        setMyInput = {settodoInput}
+        myTodo = {todoValue}
+        setMyTodo = {settodoValue}
+        myDate = {dateCreated}
+        myTime = {timeCreated}
+        />
     </div>
     </>
   );
