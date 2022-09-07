@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 
 const Todo = ({myInput,setMyInput,myTodo,setMyTodo,myDate,myTime}) => {
-    const [count, setcount] = useState("no");
+    const [count, setcount] = useState("0");
     const [editedTodo, seteditedTodo] = useState(0)
     const [editedInput, seteditedInput] = useState({})
     const [editTodos, seteditTodos] = useState("")
+    const [message, setmessage] = useState("")
 
-    // console.log(myDate);
+    console.log(myDate);
     // console.log(myTodo);
     const addTodo = () => {
         if (myInput !== "") {
@@ -14,8 +15,9 @@ const Todo = ({myInput,setMyInput,myTodo,setMyTodo,myDate,myTime}) => {
             setMyTodo([...myTodo,newTodo]);
             setcount(myTodo.length+1)
             setMyInput("")
+            setmessage("")
         } else {
-            alert("Please fill in your to-do😊")
+            setmessage("Input your todo!")
         }
     }
 
@@ -41,6 +43,7 @@ const Todo = ({myInput,setMyInput,myTodo,setMyTodo,myDate,myTime}) => {
     }
   return (
 		<>
+            <div className="text-center fs-4" style={{color:"#FF2525"}}>{message}</div>
 			<div className="py-3 mx-auto">
 				<input
 					type="text"
@@ -53,15 +56,13 @@ const Todo = ({myInput,setMyInput,myTodo,setMyTodo,myDate,myTime}) => {
 				/>
 			</div>
 
+
 			<div align="center">
-				<button className="btn btn-success my-1 w-75" onClick={addTodo}>
+				<button className="btn btn-warning shadow-lg my-1 w-75" onClick={addTodo}>
 					Add
 				</button>
 			</div>
-
-			<div className="fs-5 text-info text-center">
-				You have {count} pending task(s)
-			</div>
+            <div className="fs-5 text-light text-center mx-auto py-2">You have {count} pending task(s)</div>
 
 			{/* Table display */}
 			<div className="mt-3">
@@ -81,9 +82,9 @@ const Todo = ({myInput,setMyInput,myTodo,setMyTodo,myDate,myTime}) => {
 					<>
 						<table className="table table-striped text-center">
 							<tr className="my-2 text-warning">
-								<td className="col-1 px-lg-3">{index + 1}</td>
-								<td className="col-3 px-lg-3">{input.myInput}</td>
-								<td className="col-2">{input.myDate}</td>
+								<td className="col-1">{index + 1}</td>
+								<td className="col-2">{input.myInput}</td>
+								<td className="col-3">{input.myDate}</td>
 								<td className="col-2">{input.myTime}</td>
 								<td className="col-4 mx-auto py-2">
 									<button className="btn btn-outline-warning mx-2 col-lg-2 col-sm-4" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => editTodo(index)}>Edit</button>
