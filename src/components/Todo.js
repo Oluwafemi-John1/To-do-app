@@ -47,21 +47,16 @@ const Todo = ({myInput,setMyInput,myTodo,setMyTodo,myDate,myTime}) => {
 			<div className="py-3 mx-auto">
 				<input
 					type="text"
-					className="my-1 mx-auto form-control w-75"
+					className="my-1 py-3 mx-auto form-control w-75"
 					placeholder="Enter your to-do"
 					value={myInput}
 					required
 					maxLength={20}
 					onChange={(e) => setMyInput(e.target.value)}
 				/>
+				<button className="btn btn-warning shadow-lg my-1" id='button' onClick={addTodo}>Add</button>
 			</div>
 
-
-			<div align="center">
-				<button className="btn btn-warning shadow-lg my-1 w-75" onClick={addTodo}>
-					Add
-				</button>
-			</div>
             <div className="fs-5 text-light text-center mx-auto py-2">You have {count} pending task(s)</div>
 
 			{/* Table display */}
