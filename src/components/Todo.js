@@ -71,7 +71,7 @@ const Todo = ({myInput,setMyInput,myTodo,setMyTodo,myDate,myTime}) => {
 				{myTodo.map((input, index) => (
 					<>
 						<div className="my-2 text-dark">
-                            <li className='d-flex rounded shadow-lg px-2' style={{backgroundColor:"rgb(10, 10, 292)"}}>
+                            <li className='d-flex rounded shadow-lg px-2 text-light' style={{backgroundColor:"rgb(10, 10, 292)"}}>
                                 <li className="col-1 py-2">{index + 1}</li>
                                 <li className="col-5 py-2">{input.myInput}</li>
                                
@@ -81,8 +81,8 @@ const Todo = ({myInput,setMyInput,myTodo,setMyTodo,myDate,myTime}) => {
                                 </li>
                             </li>
                             <div className='d-flex'>
-                                <li className="col-2 py-2" id='list'><small>{input.myDate}</small></li>
-                                <li className="col-3 py-2" id='list'><small>{input.myTime}</small></li>
+                                <li className="col-2 py-2 ms-3" id='list'><small>{input.myDate}</small></li>
+                                <li className="col-3 py-2 ms-3" id='list'><small>{input.myTime}</small></li>
                             </div>
 						</div>
 						
