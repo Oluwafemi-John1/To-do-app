@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './App.css';
-import Header from './components/Header';
 import Todo from './components/Todo';
 
 function App() {
@@ -14,7 +13,6 @@ function App() {
   return (
     <>
     <div className="container-fluid mt-lg-5">
-        {/* <Header/> */}
         <Todo
         myInput = {todoInput}
         setMyInput = {settodoInput}
