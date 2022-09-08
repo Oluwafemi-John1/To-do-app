@@ -23,6 +23,15 @@ li {
     }
 
     #button {
-        transform: translate(300px,-56px);
+        transform: translate(280px,-56px);
+    }
+
+    #list {
+        font-size: 12px;
+    }
+
+    #topdiv {
+        margin: 20px 0px 0px 12px;
+        width: 390px;
     }
 }
